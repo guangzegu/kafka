@@ -128,6 +128,20 @@ public enum CompressionType {
         }
     };
 
+
+    /*ISAL(5, "isal", 1.0f) {
+        @Override
+        public OutputStream wrapForOutput(ByteBufferOutputStream
+    , byte messageVersion) {
+            return ZstdFactory.wrapForOutput(buffer);
+        }
+
+        @Override
+        public InputStream wrapForInput(ByteBuffer buffer, byte messageVersion, BufferSupplier decompressionBufferSupplier) {
+            return ZstdFactory.wrapForInput(buffer, messageVersion, decompressionBufferSupplier);
+        }
+    };*/
+
     public final int id;
     public final String name;
     public final float rate;

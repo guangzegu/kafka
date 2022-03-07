@@ -162,6 +162,13 @@ private[log] object LogValidator extends Logging {
           throw new InvalidRecordException(s"Inconsistent batch offset range [${batch.baseOffset}, ${batch.lastOffset}] " +
             s"and count of records $count in topic partition $topicPartition.")
         }
+
+        //need crc32c to checksum record batch ?
+      /*  if(!batch.isValid){
+          brokerTopicStats.allTopicsStats.invalidMessageCrcRecordsPerSec.mark()
+          throw new InvalidRecordException(s"Batch has invalid checksum: [${batch.checksum()}] ")
+
+        }*/
       }
 
       if (batch.isControlBatch) {

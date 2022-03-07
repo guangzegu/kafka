@@ -58,6 +58,7 @@ public class RecordBatchIterationBenchmark extends BaseRecordBatchBenchmark {
         }
     }
 
+
     @OperationsPerInvocation(value = batchCount)
     @Fork(jvmArgsAppend = "-Xmx8g")
     @Benchmark
@@ -71,6 +72,8 @@ public class RecordBatchIterationBenchmark extends BaseRecordBatchBenchmark {
             }
         }
     }
+
+
 
     @OperationsPerInvocation(value = batchCount)
     @Fork(jvmArgsAppend = "-Xmx8g")

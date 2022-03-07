@@ -29,6 +29,7 @@ object CompressionCodec {
       case SnappyCompressionCodec.codec => SnappyCompressionCodec
       case LZ4CompressionCodec.codec => LZ4CompressionCodec
       case ZStdCompressionCodec.codec => ZStdCompressionCodec
+      case ISALCompressionCodec.codec => ISALCompressionCodec
       case _ => throw new UnknownCodecException("%d is an unknown compression codec".format(codec))
     }
   }
@@ -39,6 +40,7 @@ object CompressionCodec {
       case SnappyCompressionCodec.name => SnappyCompressionCodec
       case LZ4CompressionCodec.name => LZ4CompressionCodec
       case ZStdCompressionCodec.name => ZStdCompressionCodec
+      case ISALCompressionCodec.name => ISALCompressionCodec
       case _ => throw new kafka.common.UnknownCodecException("%s is an unknown compression codec".format(name))
     }
   }
@@ -46,7 +48,7 @@ object CompressionCodec {
 
 object BrokerCompressionCodec {
 
-  val brokerCompressionCodecs = List(UncompressedCodec, ZStdCompressionCodec, LZ4CompressionCodec, SnappyCompressionCodec, GZIPCompressionCodec, ProducerCompressionCodec)
+  val brokerCompressionCodecs = List(UncompressedCodec, ZStdCompressionCodec, LZ4CompressionCodec, SnappyCompressionCodec, GZIPCompressionCodec,ISALCompressionCodec, ProducerCompressionCodec)
   val brokerCompressionOptions: List[String] = brokerCompressionCodecs.map(codec => codec.name)
 
   def isValid(compressionType: String): Boolean = brokerCompressionOptions.contains(compressionType.toLowerCase(Locale.ROOT))
@@ -92,6 +94,11 @@ case object LZ4CompressionCodec extends CompressionCodec with BrokerCompressionC
 case object ZStdCompressionCodec extends CompressionCodec with BrokerCompressionCodec {
   val codec = 4
   val name = "zstd"
+}
+
+case object ISALCompressionCodec extends CompressionCodec with BrokerCompressionCodec {
+  val codec = 5
+  val name = "isal"
 }
 
 case object NoCompressionCodec extends CompressionCodec with BrokerCompressionCodec {
